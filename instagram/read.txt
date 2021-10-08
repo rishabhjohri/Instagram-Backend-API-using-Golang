@@ -1,0 +1,36 @@
+
+// pass  HTTP's client, otherwise pass it with nil.
+client := instagram.NewClient(nil)
+
+// set ClientID, ClientSecret and AccessToken:
+client.ClientID = "8f2c0ad697ea4094beb2b1753b7cde9c"
+
+
+// Gets the most recent media published by a user with id "3"
+media, next, err := client.Users.RecentMedia("3", nil)
+
+// Gets user's feed.
+opt := &instagram.Parameters{Count: 3}
+media, next, err := client.Users.RecentMedia("3", opt)
+
+//Data Retrieval
+
+media, next, err := client.Media.Popular()
+if err != nil {
+	fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+}
+for _, m := range media {
+	fmt.Printf("ID: %v, Type: %v\n", m.ID, m.Type)
+}
+if next.NextURL != "" {
+	fmt.Println("Next URL", next.NextURL)
+}
+
+
+//If a single type is returned in first return value, then only two values returned. 
+
+user, err := client.Users.Get("3")
+if err != nil {
+	fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+}
+fmt.Println("Username", user.Username)
