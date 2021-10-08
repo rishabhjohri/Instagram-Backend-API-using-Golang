@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/rishabhjohri/Instagram-Backend-API-using-Golang/API"
+	"github.com/rishabhjohri/Instagram-Backend-API-using-Golang/instagram"
 	"os"
 )
 
